@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sanjeev Nandihalli | Portfolio</title>
+  <style>
+    body {
+      background: #181818;
+      color: #fff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #222;
+      padding: 1rem 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      color: #00bcd4;
+      text-decoration: none;
+      margin: 0 1.5rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .intro {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .intro h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #00bcd4;
+    }
+    .intro h2 {
+      color: #00bcd4;
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+    .intro p {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .skills, .projects, .contact {
+      margin-top: 3rem;
+    }
+    .skill-row {
+      display: contents;
+    }
+    .skill-bar {
+      grid-column: 1;
+      height: 14px;
+      border-radius: 8px;
+      background: #333;
+      width: 160px;
+      overflow: hidden;
+      margin-right: 0.7rem;
+      box-shadow: 0 1px 6px rgba(0,188,212,0.10);
+      position: relative;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #00bcd4 60%, #ffb300 100%);
+      transition: width 0.7s cubic-bezier(.4,2,.6,1);
+      position: absolute;
+      left: 0; top: 0;
+    }
+    .skill-label-wrap {
+      grid-column: 2;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.5rem;
+    }
+    .skill-label {
+      min-width: 120px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: inherit;
+    }
+    .skills-list {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 0.2rem 1.2rem;
+      margin-top: 1rem;
+      margin-right: 0;
+    }
+    .skills-list .html { background: #e44d26; color: #fff; }
+    .skills-list .css { background: #264de4; color: #fff; }
+    .skills-list .js { background: #f0db4f; color: #222; }
+    .skills-list .python { background: #306998; color: #fff; }
+    .skills-list .java { background: #b07219; color: #fff; }
+    .skills-list .mysql { background: #00758f; color: #fff; }
+    .skills-list .fullstack { background: #8e44ad; color: #fff; }
+    .skills-list .manualtesting { background: #ff7043; color: #fff; }
+    .skills-list span {
+      position: relative;
+      padding: 0.7rem 2.2rem;
+      border-radius: 20px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      min-width: 120px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .skills-list .skill-number {
+      display: none;
+      position: absolute;
+      left: -2.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: rgba(0,0,0,0.15);
+      color: #fff;
+      padding: 0.2rem 0.7rem;
+      border-radius: 12px;
+      pointer-events: none;
+    }
+    .skills-list span:hover .skill-number {
+      display: inline-block;
+    }
+    .projects-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .project {
+      background: #222;
+      border-radius: 8px;
+      padding: 1.2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .project h3 {
+      margin-top: 0;
+      color: #00bcd4;
+      background: linear-gradient(90deg, #00bcd4 40%, #ffb300 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .project p {
+      color: #bbb;
+      font-size: 1rem;
+    }
+    .project .tech {
+      font-size: 0.95rem;
+      color: #aaa;
+      margin-top: 0.5rem;
+    }
+    .contact-info {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .contact-info a {
+      color: #00bcd4;
+      text-decoration: none;
+      margin: 0 0.5rem;
+      font-size: 1.1rem;
+    }
+    .project-topic {
+      font-size: 1.05rem;
+      color: #ffb300;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+      letter-spacing: 1px;
+      display: block;
+    }
+    @media (max-width: 600px) {
+      nav a { margin: 0 0.7rem; }
+      .container { padding: 1rem 0.3rem; }
+      .intro h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div style="display: flex; justify-content: center; align-items: center; margin-top: 2rem; margin-bottom: 1rem; flex-direction: column;">
+    <img src="Formal photo.webp" alt="Formal Photo" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.15); border: 4px solid #222; background: #fff;" />
+    <span style="margin-top: 1rem; font-size: 1.4rem; font-family: 'Segoe Script', 'Brush Script MT', cursive, sans-serif; color: #ff4081; letter-spacing: 2px; font-weight: bold; text-shadow: 1px 2px 8px rgba(255,64,129,0.10);">Engineer</span>
+    <a href="resume.html" style="margin-top: 1.2rem; background: #00bcd4; color: #181818; padding: 0.7rem 2rem; border-radius: 24px; font-weight: bold; text-decoration: none; font-size: 1.1rem; box-shadow: 0 2px 8px rgba(0,188,212,0.10); transition: background 0.2s;">View Resume</a>
+  </div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="container">
+    <section id="about" class="intro">
+      <h1>Sanjeev Nandihalli</h1>
+      <h2>2025 ISE Graduate, SKSKVMACET</h2>
+      <p>
+        Hi! I'm Sanjeev, a recent graduate in Information Science & Engineering from SKSKVMACET. I am passionate about web development and software engineering, and I love building user-friendly, efficient applications. I am eager to contribute my skills and grow in a dynamic team.
+      </p>
+    </section>
+
+    <section id="skills" class="skills">
+      <h2>Skills</h2>
+      <div class="skills-list">
+        <div class="skill-row"><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div><div class="skill-label-wrap"><span style="color:#bbb; font-size:0.98rem;">70%</span><span class="html skill-label"><span class="skill-number">1</span> HTML</span></div></div>
+        <div class="skill-row"><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div><div class="skill-label-wrap"><span style="color:#bbb; font-size:0.98rem;">65%</span><span class="css skill-label"><span class="skill-number">2</span> CSS</span></div></div>
+        <div class="skill-row"><div class="skill-bar"><div class="skill-bar-fill" style="width:50%"></div></div><div class="skill-label-wrap"><span style="color:#bbb; font-size:0.98rem;">50%</span><span class="js skill-label"><span class="skill-number">3</span> JavaScript</span></div></div>
+        <div class="skill-row"><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div><div class="skill-label-wrap"><span style="color:#bbb; font-size:0.98rem;">75%</span><span class="python skill-label"><span class="skill-number">4</span> Python</span></div></div>
+        <div class="skill-row"><div class="skill-bar"><div class="skill-bar-fill" style="width:50%"></div></div><div class="skill-label-wrap"><span style="color:#bbb; font-size:0.98rem;">50%</span><span class="java skill-label"><span class="skill-number">5</span> Java</span></div></div>
+        <div class="skill-row"><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div><div class="skill-label-wrap"><span style="color:#bbb; font-size:0.98rem;">60%</span><span class="mysql skill-label"><span class="skill-number">6</span> MySQL</span></div></div>
+        <div class="skill-row"><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div><div class="skill-label-wrap"><span style="color:#bbb; font-size:0.98rem;">65%</span><span class="fullstack skill-label"><span class="skill-number">7</span> Full Stack Development</span></div></div>
+        <div class="skill-row"><div class="skill-bar"><div class="skill-bar-fill" style="width:50%"></div></div><div class="skill-label-wrap"><span style="color:#bbb; font-size:0.98rem;">50%</span><span class="manualtesting skill-label"><span class="skill-number">8</span> Manual Testing</span></div></div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <h2>Projects</h2>
+      <ul style="list-style:none; padding:0; margin:2rem 0 0 0;">
+        <li style="margin-bottom:1.2rem;"><span style="color:#ffb300; font-size:1.3rem; vertical-align:middle; margin-right:0.5rem;">•</span><a href="project.html?project=student-portal" class="project-link" style="font-size:1.15rem; color:#00bcd4; text-decoration:none; font-weight:bold;">Student Portal</a></li>
+        <li style="margin-bottom:1.2rem;"><span style="color:#ffb300; font-size:1.3rem; vertical-align:middle; margin-right:0.5rem;">•</span><a href="project.html?project=parking-management" class="project-link" style="font-size:1.15rem; color:#00bcd4; text-decoration:none; font-weight:bold;">Parking Management System</a></li>
+        <li style="margin-bottom:1.2rem;"><span style="color:#ffb300; font-size:1.3rem; vertical-align:middle; margin-right:0.5rem;">•</span><a href="project.html?project=college-management" class="project-link" style="font-size:1.15rem; color:#00bcd4; text-decoration:none; font-weight:bold;">College Management System</a></li>
+        <li style="margin-bottom:1.2rem;"><span style="color:#ffb300; font-size:1.3rem; vertical-align:middle; margin-right:0.5rem;">•</span><a href="project.html?project=smart-agriculture" class="project-link" style="font-size:1.15rem; color:#00bcd4; text-decoration:none; font-weight:bold;">Smart Agriculture Using IoT & AIML</a></li>
+      </ul>
+    </section>
+
+    <section id="work-experience" class="work-experience" style="margin-top:3rem;">
+      <h2>Work Experience</h2>
+      <div style="margin-bottom:2rem;">
+        <h3 style="color:#00bcd4; margin-bottom:0.3rem;">Intern | SVARKS Technologies LLP <span style='font-size:1rem; color:#ffb300;'>(Nov-2023)</span></h3>
+        <p style="color:#bbb; margin:0 0 0.5rem 0;">Completed a Full Stack Development internship, gaining hands-on experience in frontend and backend technologies.</p>
+        <ul style="color:#bbb; font-size:1rem; margin:0 0 0.5rem 1.2rem;">
+          <li>Grand Coffee Shop Project</li>
+          <ul style="margin:0 0 0.5rem 1.2rem;">
+            <li>Developed a website using HTML, CSS, Bootstrap, JavaScript, and Python-Django.</li>
+            <li>Showcased available menu items with prices.</li>
+            <li>Enabled item ordering, multiple payment methods, home delivery, and a rating system.</li>
+          </ul>
+        </ul>
+      </div>
+      <div style="margin-bottom:2rem;">
+        <h3 style="color:#00bcd4; margin-bottom:0.3rem;">Intern | ROOMAN Technologies LLP <span style='font-size:1rem; color:#ffb300;'>(Sep-2025)</span></h3>
+        <p style="color:#bbb; margin:0 0 0.5rem 0;">CERTIFICATE: AI-DevOps Engineer Internship (Rooman Technologies), IBM Project on AI-DevOps Integration, Soft Skills Development Program (Wadhwani Foundation).</p>
+        <ul style="color:#bbb; font-size:1rem; margin:0 0 0.5rem 1.2rem;">
+          <li>I successfully completed a 6-month internship at Rooman Technologies in the role of an AI-DevOps Engineer.</li>
+          <li>Gained practical experience in implementing AI and DevOps methodologies, working on real-time tasks involving tools such as Docker, Jenkins, Git, and Kubernetes.</li>
+          <li>Contributed to an IBM project focused on AI-DevOps integration, building and deploying machine learning models and automating workflows.</li>
+          <li>Enhanced my soft skills through a structured program.</li>
+        </ul>
+      </div>
+      <a href="work_experience.html" style="display:inline-block; background:#00bcd4; color:#181818; padding:0.7rem 2rem; border-radius:24px; font-weight:bold; text-decoration:none; font-size:1.1rem; box-shadow:0 2px 8px rgba(0,188,212,0.10); transition:background 0.2s; margin-bottom:1.2rem;">See Full Work Experience</a>
+      <a href="personal_skills.html" style="display:inline-block; background:#ffb300; color:#181818; padding:0.7rem 2rem; border-radius:24px; font-weight:bold; text-decoration:none; font-size:1.1rem; box-shadow:0 2px 8px rgba(255,179,0,0.10); transition:background 0.2s; margin-left:1.2rem;">Personal Skills</a>
+      <a href="personal_details.html" style="display:inline-block; background:#ff4081; color:#fff; padding:0.7rem 2rem; border-radius:24px; font-weight:bold; text-decoration:none; font-size:1.1rem; box-shadow:0 2px 8px rgba(255,64,129,0.10); transition:background 0.2s; margin-left:1.2rem;">Personal Details</a>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <div class="contact-info">
+        <p>Phone: <a href="tel:+919353852667">+91 9353852667</a></p>
+        <p>Email: <a href="mailto:sanjeev@email.com">sanjeev@email.com</a></p>
+        <p>
+          <a href="https://github.com/sanjeev" target="_blank">GitHub</a> |
+          <a href="https://linkedin.com/in/sanjeev" target="_blank">LinkedIn</a>
+        </p>
+      </div>
+    </section>
+  </div>
+</body>
+</html> 
